@@ -238,8 +238,6 @@ ffbndc.o: ffbndc.F $(FFINC)
 
 $(LIB): $(OBJS)
 	$(AR) $(ARFLAGS) $(LIB) $?
-	-$(RANLIB) $(LIB)
-
 
 $(FE): lt.F $(LTINC) $(LIB)
 	$(XFC) -o $(FE) lt.F $(LIB) $(LDFLAGS)
