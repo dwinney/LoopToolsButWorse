@@ -1,8 +1,8 @@
 BLD = build$(QUADSUFFIX)
 
-LIBDIR = $(PREFIX)/lib$(LIBDIRSUFFIX)
-INCLUDEDIR = $(PREFIX)/include
-BINDIR = $(PREFIX)/bin
+LIBDIR = lib
+INCLUDEDIR = include
+BINDIR = bin
 
 LIB = libooptools$(QUADSUFFIX).a
 FE = lt$(QUADSUFFIX)$(EXE)
@@ -39,12 +39,10 @@ ARGS = $(PARALLEL) \
   LDFLAGS="$(LDFLAGS)" \
   LIBPATH="$(LIBPATH)"
 
-
 default all lib frontend mma: force
 	cd $(BLD) && $(MAKE) $(ARGS) $@
 
 install: lib frontend
-	-mkdir $(PREFIX)
 	-mkdir $(LIBDIR) $(BINDIR) $(INCLUDEDIR)
 	cp -p $(BLD)/$(LIB) $(LIBDIR)
 	cp -p $(INCLUDE) $(INCLUDEDIR)
@@ -66,5 +64,5 @@ $(BLD)/timestamp:
 	touch $(BLD)/timestamp
 
 clean:
-	rm -fr $(BLD)
+	rm -fr $(BLD) $(LIBDIR) $(BINDIR) $(INCLUDEDIR)
 
