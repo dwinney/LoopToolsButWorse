@@ -151,20 +151,20 @@ case "$1,$2,$3" in
 GNU,Fortran,[123].*)
   eval setflags FFLAGS "\
 ${FFLAGS-${CONF_DEBUG:--O1} ${CONF_DEBUG:+-Wall}} \
-$CONF_ARCH $CONF_AS $CONF_BITS -ffixed-line-length-none -fno-range-check \
+$CONF_ARCH $CONF_AS $CONF_BITS -ffixed-line-length-none -fno-range-check -fPIC \
 $CONF_STATIC"
   ;;
 GNU,Fortran,4.*)
   eval setflags FFLAGS "\
 ${FFLAGS-${CONF_DEBUG:--O3} ${CONF_DEBUG:+-Wall -Wno-unused-dummy-argument -Wtabs -ffpe-trap=invalid,overflow,zero}} \
-$CONF_ARCH $CONF_AS $CONF_BITS -ffixed-line-length-none -fno-range-check \
+$CONF_ARCH $CONF_AS $CONF_BITS -ffixed-line-length-none -fno-range-check -fPIC \
 ${CONF_QUAD:+-freal-8-real-$CONF_QUADSIZE} \
 ${CONF_STATIC:-$CONF_STATIC_GFORTRAN} ${CONF_STATIC_EXT:+-static-libgfortran -static-libgcc}"
   ;;
 GNU,Fortran,*)
   eval setflags FFLAGS "\
 ${FFLAGS-${CONF_DEBUG:--O3} ${CONF_DEBUG:+-Wall -Wno-unused-dummy-argument -Wno-tabs -Wno-conversion -ffpe-trap=invalid,overflow,zero}} \
-$CONF_ARCH $CONF_AS $CONF_BITS -ffixed-line-length-none -fno-range-check \
+$CONF_ARCH $CONF_AS $CONF_BITS -ffixed-line-length-none -fno-range-check -fPIC \
 ${CONF_QUAD:+-freal-8-real-$CONF_QUADSIZE} \
 ${CONF_STATIC:-$CONF_STATIC_GFORTRAN} ${CONF_STATIC_EXT:+-static-libgfortran -static-libgcc}"
   ;;
@@ -386,7 +386,7 @@ _EOF_
   # this is a workaround for a bug in mcc 11.0:
   ln -s "$CONF_DIR" =.
 
-  for CONF_STDCPP in "" " -stdlib=libstdc++" ; do
+  for CONF_STDCPP in "" "" ; do
     CC="$CONF_DIR/src/tools/fcc.in" REALCC="$CONF_CC$CONF_CFLAGS$CONF_MCDEFS" \
     CXX="$CONF_DIR/src/tools/f++.in" REALCXX="$CONF_CXX$CONF_CXXFLAGS$CONF_MCDEFS$CONF_STDCPP" \
     PATH="$PATH:$CONF_DIR/src/tools" \
