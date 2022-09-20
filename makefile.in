@@ -1,14 +1,14 @@
-BLD = build$(QUADSUFFIX)
+BLD = build
 
 LIBDIR = lib
 INCLUDEDIR = include
 BINDIR = bin
 
-LIB = libooptools$(QUADSUFFIX).so
-FE = lt$(QUADSUFFIX)$(EXE)
-MFE = LoopTools$(QUADSUFFIX)$(EXE)
-FCC = fcc$(QUADSUFFIX)
-FXX = f++$(QUADSUFFIX)
+LIB = libLoopTools.so
+FE = lt$(EXE)
+MFE = LoopTools$(EXE)
+FCC = fcc
+FXX = f++
 INCLUDE = $(BLD)/looptools.h $(BLD)/clooptools.h
 
 ARGS = $(PARALLEL) \
