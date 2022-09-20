@@ -50,7 +50,7 @@ while test $# -gt 0; do
   *.a | *.o | *.so)
 	objs+=" $arg"
 	;;
-  *.cc)
+  *.cc|*.cpp)
 	args+=" $arg"
 	cc="$cxx"
 	;;
