@@ -1,4 +1,7 @@
 #include <iostream>
+#include <complex>
+#include <vector>
+
 #include "clooptools.h"
 
 using namespace std;
