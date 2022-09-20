@@ -4,7 +4,7 @@ LIBDIR = lib
 INCLUDEDIR = include
 BINDIR = bin
 
-LIB = libooptools$(QUADSUFFIX).a
+LIB = libooptools$(QUADSUFFIX).so
 FE = lt$(QUADSUFFIX)$(EXE)
 MFE = LoopTools$(QUADSUFFIX)$(EXE)
 FCC = fcc$(QUADSUFFIX)
