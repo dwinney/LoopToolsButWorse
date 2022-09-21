@@ -1,13 +1,13 @@
 ## LoopToolsButWorse
 
-The [LoopTools](https://feynarts.de/looptools/) package provides highly-optimized implementations of one-loop scalar and tensor integrals. Although written primarily in Fortran, an interface with C and C++ is provided through provided compilation scripts. Thesse scripts and makefiles involved tend to be highly opaque making linking a precompiled LoopTools libarary with an existing C++ projects a higly nontrivial task.
+The [LoopTools](https://feynarts.de/looptools/) package provides highly-optimized implementations of one-loop scalar and tensor integrals. Although written in Fortran, an interface with C/C++ and scripts to compile simple CXX projects is provided. These scripts are highly opaque and make incorporating LoopTools into an existing C++ nontrivial.
 
 This repository is a modified version of LoopTools-2.16 aimed at allowing LoopTools functions to be incorporated with other CMake projects as well as usable with ROOT's [cling](https://root.cern/cling/) interpreter. Necessary modifications to the makefiles mean some of the more advanced functionalities (e.g. MathLink) are not guarenteed to work as intended (hence *ButWorse*). 
 
 ### Installation
 Default LoopTools installation produces a *static* Fortran (.a) library. This poses a problem when using the cling interpreter which currently can only load dynamic libraries. 
 
-Installation for LoopToolsButWorse follows exactly as vanilla LoopTools:
+Installation follows exactly as vanilla LoopTools:
 ```bash
 ./configure
 make
@@ -25,7 +25,9 @@ bin/
     fcc
     lt
 ```
-Note the installed library has been renamed and now produces a .so file (compilation so far only tested on Ubuntu). Architecture-related suffices have been omitted to make above structure uniform across platforms. After building this way, the LoopTools can be linked using CMake, e.g. through:
+Note the installed library has been renamed and now produces an explicitly .so file (so far only tested on Ubuntu-20.04.5 with g++/gFortran-9.4.0). Architecture-dependend suffixes in filenames have been omitted to make above install structure uniform across platforms. 
+
+After building this way, the LoopTools can be linked using CMake, e.g. through:
 ```
 find_library( LOOPLIB NAMES LoopTools libLoopTools 
                       HINTS "$ENV{LOOPTOOLS}/lib")
