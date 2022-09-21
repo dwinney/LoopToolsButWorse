@@ -4,6 +4,8 @@ The [LoopTools](https://feynarts.de/looptools/) package provides highly-optimize
 
 This repository is a modified version of LoopTools-2.16 aimed at allowing LoopTools functions to be incorporated with other CMake projects as well as usable with ROOT's [cling](https://root.cern/cling/) interpreter. Necessary modifications to the makefiles mean some of the more advanced functionalities (e.g. MathLink) are not guarenteed to work as intended (hence *ButWorse*). 
 
+With the exception of a minor change described below, all the source code is unchanged with only changes to installation, all credit goes to the original authors.
+
 ### Installation
 Default LoopTools installation produces a *static* Fortran (.a) library. This poses a problem when using the cling interpreter which currently can only load dynamic libraries. 
 
@@ -41,4 +43,5 @@ with `LOOPTOOL` an environment variable set to the top level directory.
 An example CMakefile is provided.
 
 ### Usage
-In principle all the functionality of LoopTools is accessable in the normal way using the built-in C/C++ syntax. Minor changes have been made to the `inini()` and `ltexi()` to suppress command-line messages when calculation produces no errors.
+All the functionality of LoopTools is accessable in the normal way using the built-in C/C++ syntax. 
+Minor changes have been made to the `itini()` and `ltexi()` to suppress command-line messages when calculation produces no errors. This is to prevent spurious command-line arguments when multiple instances of LoopTools functions are called repeatedly inside another code.
