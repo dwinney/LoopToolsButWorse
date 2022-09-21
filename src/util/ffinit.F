@@ -52,15 +52,15 @@
 *	check whether there is anything to do
 	if ( init .ne. 0 ) return
 	init = 1
-	print *,'===================================================='
-	print *,'  FF 2.0, a package to evaluate one-loop integrals'
-	print *,'written by G. J. van Oldenborgh, NIKHEF-H, Amsterdam'
-	print *,'===================================================='
-	print *,'for the algorithms used see preprint NIKHEF-H 89/17,'
-	print *,'''New Algorithms for One-loop Integrals'', by G.J. van'
-	print *,'Oldenborgh and J.A.M. Vermaseren, published in '
-	print *,'Zeitschrift fuer Physik C46(1990)425.'
-	print *,'===================================================='
+*	print *,'===================================================='
+*	print *,'  FF 2.0, a package to evaluate one-loop integrals'
+*	print *,'written by G. J. van Oldenborgh, NIKHEF-H, Amsterdam'
+*	print *,'===================================================='
+*	print *,'for the algorithms used see preprint NIKHEF-H 89/17,'
+*	print *,'''New Algorithms for One-loop Integrals'', by G.J. van'
+*	print *,'Oldenborgh and J.A.M. Vermaseren, published in '
+*	print *,'Zeitschrift fuer Physik C46(1990)425.'
+*	print *,'===================================================='
 *  #] check:
 *  #[ LoopTools stuff
 *
@@ -586,9 +586,9 @@
 *  #[ nerr=999:
 	if ( nerr .eq. 999 ) then
 *	    print out total numbers...
-	    print '(a)',' '
-	    print '(a)','total number of errors and warnings'
-	    print '(a)','==================================='
+*	    print '(a)',' '
+*	    print '(a)','total number of errors and warnings'
+*	    print '(a)','==================================='
 	    inone = 1
 	    do 10 i = 1, nmax
 		if ( noccur(i) .gt. 0 ) then
@@ -598,8 +598,8 @@
 		    inone = 0
 		endif
    10	    continue
-	    if ( inone.eq.1 ) print '(a)','fferr: no errors'
-	    print '(a)',' '
+*	    if ( inone.eq.1 ) print '(a)','fferr: no errors'
+*	    print '(a)',' '
 	    return
 	endif
 *  #] nerr=999:
