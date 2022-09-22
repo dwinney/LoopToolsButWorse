@@ -1,6 +1,6 @@
 ## LoopToolsButWorse
 
-The [LoopTools](https://feynarts.de/looptools/) package provides highly-optimized implementations of one-loop scalar and tensor integrals. Although written in Fortran, an interface with C/C++ and scripts to compile simple CXX projects is provided. These scripts are highly opaque and make incorporating LoopTools into an existing C++ nontrivial.
+The [LoopTools](https://feynarts.de/looptools/) package provides highly-optimized implementations of one-loop scalar and tensor integrals. Although written in Fortran, an interface with C/C++ and scripts to compile simple CXX projects is provided. These scripts are rather opaque and make incorporating LoopTools into an existing C++ library nontrivial.
 
 This repository is a modified version of LoopTools-2.16 aimed at allowing LoopTools functions to be incorporated with other CMake projects as well as usable with ROOT's [cling](https://root.cern/cling/) interpreter. Necessary modifications to the makefiles mean some of the more advanced functionalities (e.g. MathLink) are not guarenteed to work as intended (hence *ButWorse*). 
 
@@ -31,17 +31,18 @@ Note the installed library has been renamed and now produces an explicitly .so f
 
 After building this way, the LoopTools can be linked using CMake, e.g. through:
 ```
-find_library( LOOPLIB NAMES LoopTools libLoopTools 
-                      HINTS "$ENV{LOOPTOOLS}/lib")
+find_library( LOOPLIB NAMES LoopTools libLoopTools HINTS "$ENV{LOOPTOOLS}/lib")
 
 enable_language(Fortran)
+
 add_executable( myProject ${CMAKE_CURRENT_SOURCE_DIR}/myProject.cpp )
+
 set_property(TARGET myProject PROPERTY LINKER_LANGUAGE Fortran)
-target_link_libraries( test ${LOOPLIB} )
+target_link_libraries( myProject ${LOOPLIB} )
 ```
 with `LOOPTOOL` an environment variable set to the top level directory.
 An example CMakefile is provided.
 
 ### Usage
 All the functionality of LoopTools is accessable in the normal way using the built-in C/C++ syntax. 
-Minor changes have been made to the `itini()` and `ltexi()` to suppress command-line messages when calculation produces no errors. This is to prevent spurious command-line arguments when multiple instances of LoopTools functions are called repeatedly inside another code.
+Minor changes have been made to the `itini()` and `ltexi()` to suppress command-line messages when calculation produces no errors. This is to prevent superfluous things being printed to command-line when multiple instances of LoopTools functions (i.e. `itini()` calls) are used repeatedly inside another code.
